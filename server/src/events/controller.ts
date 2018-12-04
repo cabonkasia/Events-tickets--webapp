@@ -1,6 +1,6 @@
-import {Controller, Get, Post, Body, Param, BodyParam} from 'routing-controllers'
+import {Controller, Get, Post, Body, Param/*, BodyParam*/} from 'routing-controllers'
 import Event from './entity'
-import { isComingUp } from './logic'
+// import { isComingUp } from './logic'
 
 
 @Controller()

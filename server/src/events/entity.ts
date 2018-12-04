@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
+import Ticket from '../tickets/entity'
 
 @Entity()
 export default class Event extends BaseEntity {
@@ -22,6 +23,7 @@ export default class Event extends BaseEntity {
   @Column('text', {nullable:false})
   endDate: Date
 
+  @OneToMany(_ => Ticket, ticket => ticket.event, {eager:true})
+  tickets: Ticket[]
 
-//add relation OneToMany tickets (&ManyToOne in Ticket entity)
 }
