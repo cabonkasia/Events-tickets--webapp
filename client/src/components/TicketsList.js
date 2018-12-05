@@ -7,7 +7,7 @@ export default (props) => {
 
     return (
       <div>
-        <h3>{props.event.data.name}</h3>
+        <h3>TICKETS AVAILABLE FOR: {props.event.data.name}</h3>
         <ol>
             { props.event.data.tickets.map(ticket => {
                 return <Link to={`events/${ticket.event_id}/tickets/${ticket.id}`}>

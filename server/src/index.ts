@@ -9,7 +9,8 @@ const port = process.env.PORT || 4000
 const app = createKoaServer({
   cors: true,
   controllers: [
-    EventController
+    EventController,
+    TicketController
     ]
 })
 
