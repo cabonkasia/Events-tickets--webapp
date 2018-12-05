@@ -3,6 +3,7 @@ import store from './store'
 import {Provider} from 'react-redux'
 import { Route } from 'react-router-dom'
 import EventsListContainer from './components/EventsListContainer'
+import TicketsListContainer from './components/TicketsListContainer'
 
 class App extends Component {
   render() {
@@ -10,7 +11,7 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <Route path="/events" exact component={EventsListContainer} />
-          {/* <Route path="/events/:id" exact component={EventDetailsContainer} /> */}
+          <Route path="/events/:id" exact component={TicketsListContainer} />
         </div>
       </Provider>
     );

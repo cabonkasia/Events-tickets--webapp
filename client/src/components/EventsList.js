@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default (props) => {
-    if(props.events === null) return <h1>No events.</h1>
+    if(props.events === null) 
+    return <h1>No events.</h1>
 
     // console.log(props.events, 'event list')
     return (

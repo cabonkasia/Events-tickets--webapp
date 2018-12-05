@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Param/*, BodyParam*/} from 'routing-controllers'
+import {Controller, Get, Post, Body, Param } from 'routing-controllers'
 import Event from './entity'
 // import { isComingUp } from './logic'
 
@@ -6,29 +6,37 @@ import Event from './entity'
 @Controller()
 export default class EventController {
 
+    // const nowDate = new Date(Date.now())
+
   @Get("/events")
   async getAllEvents() {
      return {
        data: await Event.find(
+        
         //    {
-        //    where: { 
+        //    where: { startDate > this.nowDate
             
-            //  }
-    //     // where: isComingUp(event)
+        //      }
+        // where: isComingUp(event)
     //   }
       )
      }
   }
 
   @Get("/events/:id")
-  getOneEvent(
+  async getOneEventTickets(
       @Param("id") id: number
-  ) {
-      return Event.findOne(id)
-  }
+    ) {
+      return {
+      data: await Event.findOne({where: {id: id}/*, relations: ["tickets"]*/})
+      }
+    }
+  
 
   @Post("/events")
-  createEvent(@Body() event: Event) {
+  createEvent(
+      @Body() event: Event
+    ) {
       return event.save()
   }
 
