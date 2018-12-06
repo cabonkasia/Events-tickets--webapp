@@ -14,10 +14,10 @@ import Ticket from '../tickets/entity'
     @Column('text', {nullable:false})
     text: string
 
-    @ManyToOne(_ => User, user => user.comments, {cascade: true})
+    @ManyToOne(_ => User, user => user.comments/*, {cascade: true}*/)
     user: User
 
-    @ManyToOne(_ => Ticket, ticket => ticket.comments, {cascade: true})
+    @ManyToOne(_ => Ticket, ticket => ticket.comments/*, {cascade: true}*/)
     ticket: Ticket[]
 
 

@@ -8,6 +8,7 @@ export default (props) => {
     // console.log(props.events, 'event list')
     return (
         <ul>
+            <h1>EVENTS</h1>
             { props.events.data.map(event => {
                 return <Link to={`events/${event.id}`}>
                 <li>

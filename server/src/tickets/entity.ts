@@ -22,18 +22,18 @@ export default class Ticket extends BaseEntity {
   @Column('int', {nullable:true})
   price: number
 
-  // @Column("int", { nullable: true })
-  // eventId: number
-
-  @ManyToOne(_ => Event, event => event.tickets, /*{cascade: true}*/)
-  @JoinColumn({ name: "eventId" })
+  @ManyToOne(_ => Event, event => event.tickets/*, {cascade: true}*/)
+  // @JoinColumn({ name: "eventId" })
   event: Event
 
-  @ManyToOne(_ => User, user => user.tickets, {cascade: true})
-  @JoinColumn({ name: "userId" })
+  @Column("int", { nullable: true })
+  eventId: number
+
+  @ManyToOne(_ => User, user => user.tickets/*, {cascade: true}*/)
+  // @JoinColumn({ name: "userId" })
   user: User
 
-  @OneToMany(_=> Comment, comment => comment.ticket)
+  @OneToMany(_=> Comment, comment => comment.ticket, {eager:true})
   comments: Comment[]
 
   

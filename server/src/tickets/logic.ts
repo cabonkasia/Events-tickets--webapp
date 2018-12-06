@@ -1,10 +1,9 @@
 import Ticket from './entity'
-import Event from '../events/entity'
 
 
 // const avgPrice = ?
 
-const calculatedRisk = (ticketsArr: Ticket[], price: number, avgPrice: number, h: number, comments: number): number => {
+const calculateRisk = (ticketsArr: Ticket[], price: number, avgPrice: number, h: number, comments: number): number => {
   let risk = 5
   // const h = timestamp.slice(11,13)
 
@@ -18,6 +17,7 @@ const calculatedRisk = (ticketsArr: Ticket[], price: number, avgPrice: number, h
     const diff = price - avgPrice
     diff < 10 ? risk -= diff : risk -= 10
   }
+  //bh - business hours
   const bh = h >= 9 && h <= 17
   if (bh) { risk -= 10 }
   if (!bh) { risk += 10 }
@@ -29,4 +29,6 @@ const calculatedRisk = (ticketsArr: Ticket[], price: number, avgPrice: number, h
 
   return risk
 }
+
+export default calculateRisk
 
