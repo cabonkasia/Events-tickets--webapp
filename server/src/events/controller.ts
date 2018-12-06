@@ -10,6 +10,8 @@ export default class EventController {
 
   @Get("/events")
   async getAllEvents() {
+
+    
      return {
        data: await Event.find(
         

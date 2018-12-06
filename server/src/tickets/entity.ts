@@ -19,7 +19,7 @@ export default class Ticket extends BaseEntity {
   @Column('text', {nullable:true})
   picture?: string
 
-  @Column('text', {nullable:false})
+  @Column('int', {nullable:true})
   price: number
 
   // @Column("int", { nullable: true })
@@ -35,9 +35,14 @@ export default class Ticket extends BaseEntity {
 
   @OneToMany(_=> Comment, comment => comment.ticket)
   comments: Comment[]
+
   
   @CreateDateColumn({type: "timestamp"})
   timestamp: Timestamp
+
+  @Column('int', {nullable:true})
+  risk: number
+
 
   // @Column()
   // eventId: number
