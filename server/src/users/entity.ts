@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, Index, OneToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import Comment from '../comments/entity'
 import Ticket from '../tickets/entity'
@@ -19,13 +19,10 @@ export default class User extends BaseEntity {
   @Column('text', {nullable:false})
   password: string
 
-  //user = author:
   @OneToMany(_ => Comment, comment => comment.user, {eager:true})
   comments: Comment[]
 
   @OneToMany(_ => Ticket, ticket => ticket.user, {eager:true})
   tickets: Ticket[]
 
-  // @Column()
-  // eventId: number
 }

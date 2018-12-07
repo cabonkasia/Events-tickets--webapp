@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne/*, Index*/, Timestamp,CreateDateColumn, JoinColumn, OneToMany} from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, OneToMany } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import Event from '../events/entity'
 import User from '../users/entity'
@@ -7,7 +7,6 @@ import Comment from '../comments/entity'
 
 
 @Entity()
-// @Index(['event']/*, {unique:true}*/)
 export default class Ticket extends BaseEntity {
 
   @PrimaryGeneratedColumn()
@@ -22,28 +21,24 @@ export default class Ticket extends BaseEntity {
   @Column('int', {nullable:true})
   price: number
 
-  @ManyToOne(_ => Event, event => event.tickets/*, {cascade: true}*/)
-  // @JoinColumn({ name: "eventId" })
+  @ManyToOne(_ => Event, event => event.tickets)
   event: Event
 
-  @Column("int", { nullable: true })
+  @Column('int', { nullable: true })
   eventId: number
 
-  @ManyToOne(_ => User, user => user.tickets/*, {cascade: true}*/)
-  // @JoinColumn({ name: "userId" })
+  @ManyToOne(_ => User, user => user.tickets)
   user: User
+
+  @Column('int', { nullable: true })
+  userId: number
 
   @OneToMany(_=> Comment, comment => comment.ticket, {eager:true})
   comments: Comment[]
-
   
-  @CreateDateColumn({type: "timestamp"})
-  timestamp: Timestamp
+  @CreateDateColumn({type: 'text'})
+  timestamp: string
 
   @Column('int', {nullable:true})
   risk: number
-
-
-  // @Column()
-  // eventId: number
 }
