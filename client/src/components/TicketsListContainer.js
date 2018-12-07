@@ -8,9 +8,7 @@ class TicketsListContainer extends React.Component {
     this.props.loadEvent(Number(this.props.match.params.id))
   }
 
-
   render() {
-    // console.log(this.props)
     return <div>
           <TicketsList 
           event={this.props.event} />

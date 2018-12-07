@@ -5,9 +5,8 @@ export default (props) => {
     if(props.events === null) 
     return <h1>No events.</h1>
 
-    // console.log(props.events, 'event list')
     return (
-        <ul>
+        <ol>
             <h1>EVENTS</h1>
             { props.events.data.map(event => {
                 return <Link to={`events/${event.id}`}>
@@ -19,6 +18,6 @@ export default (props) => {
                 End date: {event.endDate}</li>
                 </Link>
             }) }
-        </ul>
+        </ol>
     )
 }

@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Param, NotFoundError } from 'routing-controllers'
+import { Controller, Get, Post, Body, Param, NotFoundError } from 'routing-controllers'
 import Ticket from './entity'
 
 
@@ -8,13 +8,13 @@ export default class TicketController {
   @Get("/events/:id/:tid")
   async getTicket(
     @Param("id") id: number,
-    @Param("tid") tid: number 
+    @Param("tid") tid: number
   ) {
-    const ticket = await Ticket.findOne({where: {eventId: id, id: tid}})
+    const ticket = await Ticket.findOne({ where: { eventId: id, id: tid } })
 
-    if(!ticket) throw new NotFoundError(`Ticket does not exist`)
-    
-    const ticketsArr = await Ticket.find({where: {userId: ticket.userId}})
+    if (!ticket) throw new NotFoundError(`Ticket does not exist`)
+
+    const ticketsArr = await Ticket.find({ where: { userId: ticket.userId } })
     const avgPrice = ticketsArr.map(obj => obj.price).reduce((prev, next) => prev + next);
 
     if (ticketsArr.length === 1) {
@@ -28,14 +28,14 @@ export default class TicketController {
       diff < 10 ? ticket.risk -= diff : ticket.risk -= 10
     }
     //bh - business hours
-     const h = ticket.timestamp.slice(11,13)
+    const h = ticket.timestamp.slice(11, 13)
     const bh = parseInt(h) >= 9 && parseInt(h) <= 17
     if (bh) { ticket.risk -= 10 }
     if (!bh) { ticket.risk += 10 }
-  
+
     if (ticket.comments.length > 3)
-    ticket.risk += 5
-    
+      ticket.risk += 5
+
     if (ticket.risk > 95) { 95 }
 
     return {
@@ -45,7 +45,7 @@ export default class TicketController {
 
   @Post("/events/:id")
   createTicket(@Body() ticket: Ticket) {
-      return ticket.save()
+    return ticket.save()
   }
 
 }

@@ -9,7 +9,7 @@ export default class EventController {
   async getAllEvents() {
 
      return {
-       data: await Event.find()
+       data: await Event.find({take: 9})
      }
   }
 
