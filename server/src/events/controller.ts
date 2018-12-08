@@ -1,4 +1,4 @@
-import {Controller, Get, Post, Body, Param } from 'routing-controllers'
+import {Controller, Get, Post, Body, Authorized } from 'routing-controllers'
 import Event from './entity'
 
 
@@ -22,16 +22,7 @@ export default class EventController {
      }
   }
 
-  //-----------moved to tickets controller:--------------//
-  // @Get("/events/:event_id")
-  // async getOneEventTickets(
-  //     @Param("event_id") id: number
-  //   ) {
-  //     return {
-  //     data: await Event.findOne({where: {id: id}})
-  //     }
-  //   }
-  
+  @Authorized()
   @Post("/events")
   createEvent(
       @Body() event: Event

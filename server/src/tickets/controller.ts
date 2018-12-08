@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, NotFoundError, CurrentUser, BadRequestError } from 'routing-controllers'
+import { Controller, Get, Post, Body, Param, NotFoundError, CurrentUser, BadRequestError, Authorized } from 'routing-controllers'
 import Ticket from './entity'
 import Event from '../events/entity'
 import User from '../users/entity'
@@ -6,8 +6,7 @@ import User from '../users/entity'
 
 @Controller()
 export default class TicketController {
-//-----------TRYING TO GET only TICKET AND EVENT.NAME----------//
-//----------moved from events/controller----------------//
+//-----------GETS only TICKET AND EVENT.NAME----------//
   @Get("/events/:event_id/tickets")
   async getOneEventTickets(
       @Param("event_id") id: number
@@ -61,18 +60,12 @@ export default class TicketController {
     }
   }
 
-  // @Post("/events/:event_id/tickets")
-  // createTicket(
-  //   // @Param("event_id") id: number,
-  //   @Body() ticket: Ticket /*ticket: <Partial>(ticket: Ticket)*/
-  //   ) {
-  //   return ticket.save()
-  // }
 
+  @Authorized()
   @Post("/events/:event_id/tickets")
   async createTicket(
+    @CurrentUser() /*user: User,*/
     @Param("event_id") eventId: number,
-    // @CurrentUser() user: User,
     @Body() input: Ticket
     ) {
       const event = await Event.findOne({where: {id: eventId}})

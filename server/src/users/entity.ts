@@ -3,6 +3,8 @@ import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import Comment from '../comments/entity'
 import Ticket from '../tickets/entity'
 import { IsString, MinLength, IsEmail } from 'class-validator'
+import * as bcrypt from 'bcrypt'
+
 
 
 @Entity()
@@ -23,6 +25,16 @@ export default class User extends BaseEntity {
   @MinLength(4)
   @Column('text', {nullable:false})
   password: string
+
+  async setPassword(rawPassword: string) {
+    const hash = await bcrypt.hash(rawPassword, 10)
+    this.password = hash
+  }
+
+  checkPassword(rawPassword: string): Promise<boolean> {
+    return bcrypt.compare(rawPassword, this.password)
+  }
+
 
   @OneToMany(_ => Comment, comment => comment.user, {eager:true})
   comments: Comment[]

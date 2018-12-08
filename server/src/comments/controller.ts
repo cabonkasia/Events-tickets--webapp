@@ -1,4 +1,4 @@
-import {Controller, Get, Param } from 'routing-controllers'
+import {Controller, Get, Param, Authorized, Post } from 'routing-controllers'
 import Comment from './entity'
 
 
@@ -13,6 +13,9 @@ export default class CommentController {
       data: await Comment.findOne({where: {id: id}})
       }
     }
+
+  // @Authorized()
+  // @Post()
 
   }
 
