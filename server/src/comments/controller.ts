@@ -1,5 +1,5 @@
-import {Controller, Get, Post, Body, Param } from 'routing-controllers'
-import Event from './entity'
+import {Controller, Get, Param } from 'routing-controllers'
+import Comment from './entity'
 
 
 @Controller()
@@ -10,10 +10,10 @@ export default class CommentController {
       @Param("comment_id") id: number
     ) {
       return {
-      data: await Event.findOne({where: {id: id}})
+      data: await Comment.findOne({where: {id: id}})
       }
     }
-    
+
   }
 
 

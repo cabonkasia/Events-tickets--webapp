@@ -1,9 +1,26 @@
-import { Controller, Get, Post, Body, Param, NotFoundError } from 'routing-controllers'
+import { Controller, Get, Post, Body, Param, NotFoundError, CurrentUser, BadRequestError } from 'routing-controllers'
 import Ticket from './entity'
+import Event from '../events/entity'
+import User from '../users/entity'
 
 
 @Controller()
 export default class TicketController {
+//-----------TRYING TO GET only TICKET AND EVENT.NAME----------//
+//----------moved from events/controller----------------//
+  @Get("/events/:event_id/tickets")
+  async getOneEventTickets(
+      @Param("event_id") id: number
+    ) {
+      const event = await Event.findOne({where: {id: id}})
+      if(!event) 
+      throw new NotFoundError(`No tickets for this event`)
+      return {
+      name: event.name,
+      tickets: event.tickets
+      }
+    }
+//--------------------------------------------------------//
 
   @Get("/events/:event_id/tickets/:ticket_id")
   async getTicket(
@@ -14,7 +31,7 @@ export default class TicketController {
 
     if (!ticket) throw new NotFoundError(`Ticket does not exist`)
 
-    const ticketsArr = await Ticket.find({ where: { userId: ticket.userId } })
+    const ticketsArr = await Ticket.find({ where: { userId: ticket.user.id } })
     const avgPrice = ticketsArr.map(obj => obj.price).reduce((prev, next) => prev + next);
 
     if (ticketsArr.length === 1) {
@@ -44,9 +61,34 @@ export default class TicketController {
     }
   }
 
-  @Post("/events/:event_id")
-  createTicket(@Body() ticket: Ticket) {
-    return ticket.save()
+  // @Post("/events/:event_id/tickets")
+  // createTicket(
+  //   // @Param("event_id") id: number,
+  //   @Body() ticket: Ticket /*ticket: <Partial>(ticket: Ticket)*/
+  //   ) {
+  //   return ticket.save()
+  // }
+
+  @Post("/events/:event_id/tickets")
+  async createTicket(
+    @Param("event_id") eventId: number,
+    // @CurrentUser() user: User,
+    @Body() input: Ticket
+    ) {
+      const event = await Event.findOne({where: {id: eventId}})
+      if (!event) throw new BadRequestError(`Event does not exist`)
+      await event.save()
+      
+      const ticket = await Ticket.create({
+        // user,
+        event,
+        description: input.description,
+        picture: input.picture,
+        price: input.price
+       }).save()
+
+      return ticket
   }
+
 
 }

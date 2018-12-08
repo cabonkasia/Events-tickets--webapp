@@ -22,14 +22,15 @@ export default class EventController {
      }
   }
 
-  @Get("/events/:event_id")
-  async getOneEventTickets(
-      @Param("event_id") id: number
-    ) {
-      return {
-      data: await Event.findOne({where: {id: id}})
-      }
-    }
+  //-----------moved to tickets controller:--------------//
+  // @Get("/events/:event_id")
+  // async getOneEventTickets(
+  //     @Param("event_id") id: number
+  //   ) {
+  //     return {
+  //     data: await Event.findOne({where: {id: id}})
+  //     }
+  //   }
   
   @Post("/events")
   createEvent(
