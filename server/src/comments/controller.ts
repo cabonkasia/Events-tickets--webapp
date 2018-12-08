@@ -1,21 +1,43 @@
-import {Controller, Get, Param, Authorized, Post } from 'routing-controllers'
+import {Controller, Body, Get, Param, Authorized, Post, CurrentUser, BadRequestError, NotFoundError } from 'routing-controllers'
 import Comment from './entity'
+import Ticket from '../tickets/entity'
 
 
 @Controller()
 export default class CommentController {
 
-  @Get("/events/:event_id/tickets/:ticket_id/comments/:comment_id")
-  async getOneEventTickets(
-      @Param("comment_id") id: number
+  @Get("/events/:event_id/tickets/ticket_id/comments")
+  async getAllComments(
+      @Param("ticket_id") ticketId: number
     ) {
+      const ticket = await Ticket.findOne({where: {id: ticketId}})
+      if(!ticket) 
+      throw new NotFoundError(`No tickets for this event`)
       return {
-      data: await Comment.findOne({where: {id: id}})
+      comments: ticket.comments
       }
     }
 
   // @Authorized()
-  // @Post()
+  @Post("/events/:event_id/tickets/:ticket_id/comments")
+  async createComment(
+    // @CurrentUser() /*user: User,*/
+    @Param("ticket_id") ticketId: number,
+    @Body() input: Comment
+    ) {
+      const ticket = await Ticket.findOne({where: {id: ticketId}})
+      if (!ticket) throw new BadRequestError(`Event does not exist`)
+      await ticket.save()
+      
+      const comment = await Comment.create({
+        // user,
+        ticket,
+        text: input.text
+       }).save()
+
+      return comment
+  }
+
 
   }
 

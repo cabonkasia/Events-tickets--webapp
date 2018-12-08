@@ -8,7 +8,7 @@ import User from '../users/entity'
 export default class TicketController {
 //-----------GETS only TICKET AND EVENT.NAME----------//
   @Get("/events/:event_id/tickets")
-  async getOneEventTickets(
+  async getAllTickets(
       @Param("event_id") id: number
     ) {
       const event = await Event.findOne({where: {id: id}})
