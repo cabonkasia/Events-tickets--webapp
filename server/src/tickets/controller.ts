@@ -5,10 +5,10 @@ import Ticket from './entity'
 @Controller()
 export default class TicketController {
 
-  @Get("/events/:id/:tid")
+  @Get("/events/:event_id/tickets/:ticket_id")
   async getTicket(
-    @Param("id") id: number,
-    @Param("tid") tid: number
+    @Param("event_id") id: number,
+    @Param("ticket_id") tid: number
   ) {
     const ticket = await Ticket.findOne({ where: { eventId: id, id: tid } })
 
@@ -36,14 +36,15 @@ export default class TicketController {
     if (ticket.comments.length > 3)
       ticket.risk += 5
 
-    if (ticket.risk > 95) { 95 }
+    if (ticket.risk > 95) 
+    ticket.risk = 95
 
     return {
       ticket
     }
   }
 
-  @Post("/events/:id")
+  @Post("/events/:event_id")
   createTicket(@Body() ticket: Ticket) {
     return ticket.save()
   }

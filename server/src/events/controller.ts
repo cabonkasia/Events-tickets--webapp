@@ -6,16 +6,25 @@ import Event from './entity'
 export default class EventController {
 
   @Get("/events")
-  async getAllEvents() {
+  async getAllEvents(
+     //<---------------------------------->//
+    // @Param("events") events: Event[]
+  ) {
+    
+    // const sdArr = events.map(event => event.startDate > nowDate)
+    // //moment.js:
+    // const upToDate = moment("20111031", "YYYYMMDD").fromNow() //string (in/ago)
+   
+     //<---------------------------------->//
 
      return {
        data: await Event.find({take: 9})
      }
   }
 
-  @Get("/events/:id")
+  @Get("/events/:event_id")
   async getOneEventTickets(
-      @Param("id") id: number
+      @Param("event_id") id: number
     ) {
       return {
       data: await Event.findOne({where: {id: id}})
