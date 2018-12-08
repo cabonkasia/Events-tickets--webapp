@@ -1,7 +1,7 @@
 import {Controller, Body, Get, Param, Authorized, Post, CurrentUser, BadRequestError, NotFoundError } from 'routing-controllers'
 import Comment from './entity'
 import Ticket from '../tickets/entity'
-
+import User from '../users/entity'
 
 @Controller()
 export default class CommentController {
@@ -18,10 +18,10 @@ export default class CommentController {
       }
     }
 
-  // @Authorized()
+  @Authorized()
   @Post("/events/:event_id/tickets/:ticket_id/comments")
   async createComment(
-    // @CurrentUser() /*user: User,*/
+    @CurrentUser() user: User,
     @Param("ticket_id") ticketId: number,
     @Body() input: Comment
     ) {
@@ -30,7 +30,7 @@ export default class CommentController {
       await ticket.save()
       
       const comment = await Comment.create({
-        // user,
+        user,
         ticket,
         text: input.text
        }).save()

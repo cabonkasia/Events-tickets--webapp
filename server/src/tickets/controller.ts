@@ -64,7 +64,7 @@ export default class TicketController {
   @Authorized()
   @Post("/events/:event_id/tickets")
   async createTicket(
-    @CurrentUser() /*user: User,*/
+    @CurrentUser() user: User,
     @Param("event_id") eventId: number,
     @Body() input: Ticket
     ) {
@@ -73,7 +73,7 @@ export default class TicketController {
       await event.save()
       
       const ticket = await Ticket.create({
-        // user,
+        user,
         event,
         description: input.description,
         picture: input.picture,
