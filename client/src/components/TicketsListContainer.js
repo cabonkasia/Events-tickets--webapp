@@ -6,18 +6,25 @@ import TicketsList from './TicketsList'
 class TicketsListContainer extends React.Component {
   componentDidMount() {
     this.props.loadEvent(Number(this.props.match.params.id))
+    console.log(this.props)
   }
 
   render() {
     return <div>
           <TicketsList 
-          event={this.props.event} />
+          event={this.props.event}
+
+          // // <-------NEW------------>
+          // tickets={this.props.event.tickets} />
+          // {/* <-------NEW------------> */}
+          />
           </div>
   }
 }
 
 const mapStateToProps = state => ({
   event: state.event
+
 })
 
 export default connect(mapStateToProps, {loadEvent})(TicketsListContainer)

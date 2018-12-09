@@ -30,7 +30,7 @@ export const loadEvents = () => (dispatch, getState) => {
 
 export const loadEvent = (eventId) => dispatch => {
   request
-  .get(`${baseUrl}/events/${eventId}`)
+  .get(`${baseUrl}/events/${eventId}/tickets`)
   .then(response => {
     dispatch(eventFetched(response.body))
   })

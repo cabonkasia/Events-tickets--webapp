@@ -5,12 +5,16 @@ export default (props) => {
     if(props.event === null) 
     return <h1>No tickets.</h1>
 
+
     return (
       <div>
-        <h3>TICKETS AVAILABLE FOR:  {props.event.data.name}</h3>
+        <h3>TICKETS AVAILABLE FOR:  {props.event.name}</h3>
         <ol>
-            { props.event.data.tickets.map(ticket => {
-                return <Link to={`events/${ticket.event_id}/tickets/${ticket.id}`}>
+            { props.event.tickets.map(ticket => {
+                console.log(props.event.tickets)
+                return <Link to={`/events/${props.event.id}/tickets/${ticket.id}`}>
+                {/* return <Link to={`/events/${ticket.event_id}/tickets/${ticket.id}`}> */}
+
                 <li>
                 <img src={ticket.picture}/><br/>
                 Price: {ticket.price}<br/> 

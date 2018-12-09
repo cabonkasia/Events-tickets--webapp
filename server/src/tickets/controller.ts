@@ -26,11 +26,12 @@ export default class TicketController {
     @Param("event_id") id: number,
     @Param("ticket_id") tid: number
   ) {
-    const ticket = await Ticket.findOne({ where: { eventId: id, id: tid } })
+    const ticket = await Ticket.findOne({ where: { eventId: id, id: tid } }/*{relations: ["event", "user"]}*/)
 
     if (!ticket) throw new NotFoundError(`Ticket does not exist`)
 
-    const ticketsArr = await Ticket.find({ where: { userId: ticket.user.id } })
+    // console.log(ticket.user)
+    const ticketsArr = await Ticket.find({ where: { userId: ticket.user_id } })
     const avgPrice = ticketsArr.map(obj => obj.price).reduce((prev, next) => prev + next);
 
     if (ticketsArr.length === 1) {

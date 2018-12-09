@@ -6,7 +6,7 @@ import User from '../users/entity'
 @Controller()
 export default class CommentController {
 
-  @Get("/events/:event_id/tickets/ticket_id/comments")
+  @Get("/events/:event_id/tickets/:ticket_id/comments")
   async getAllComments(
       @Param("ticket_id") ticketId: number
     ) {
