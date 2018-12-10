@@ -12,7 +12,7 @@ export default (props) => {
         <h1>Ticket for {props.event.name}</h1>
         <ul>Comments:
             {props.event.tickets
-            .find(ticket => (ticket.id == props.params.ticket_id)).comments
+            .find(ticket => (ticket.id === Number(props.params.ticket_id))).comments
             .map(comment => {
                 return <li>
                     {comment.text}

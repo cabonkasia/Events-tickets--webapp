@@ -2,6 +2,7 @@ import React from 'react'
 import {loadEvent} from '../actions/events'
 import {connect} from 'react-redux'
 import TicketsList from './TicketsList'
+import CreateTicketForm from './CreateTicketForm'
 
 class TicketsListContainer extends React.Component {
   componentDidMount() {
@@ -13,11 +14,8 @@ class TicketsListContainer extends React.Component {
     return <div>
           <TicketsList 
           event={this.props.event}
-
-          // // <-------NEW------------>
-          // tickets={this.props.event.tickets} />
-          // {/* <-------NEW------------> */}
           />
+          <CreateTicketForm/>
           </div>
   }
 }

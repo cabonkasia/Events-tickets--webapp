@@ -5,14 +5,9 @@ import Ticket from './Ticket'
 
 
 class TicketContainer extends React.Component {
-  // componentDidMount() {
-  //   this.props.loadTicket(Number(this.props.match.params.id))
-  //   console.log(this.props)
-  // }
 
   componentDidMount() {
-    this.props.loadTicket(Number(this.props.match.params.id), /*ticketId*/Number(this.props.match.params.id))
-    // this.props.loadTicket(Number(this.props.match.params.id), /*ticketId*/Number(this.props.match.event.tickets.find(ticket => ticket.event_id === Number(this.props.match.params.id))))
+    this.props.loadTicket(/*this.props.event.id*/Number(this.props.match.params.id), /*ticketId*/Number(this.props.match.params.ticket_id))
 
     console.log(this.props.match.params)
   }

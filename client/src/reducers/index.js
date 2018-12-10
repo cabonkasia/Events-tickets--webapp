@@ -7,5 +7,5 @@ import ticket from './ticket'
 export default combineReducers({
   events,
   event,
-  // ticket
+  ticket
 })

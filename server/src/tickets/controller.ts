@@ -16,6 +16,7 @@ export default class TicketController {
       throw new NotFoundError(`No tickets for this event`)
       return {
       name: event.name,
+      id: event.id,
       tickets: event.tickets
       }
     }
@@ -31,11 +32,14 @@ export default class TicketController {
     if (!ticket) throw new NotFoundError(`Ticket does not exist`)
 
     // console.log(ticket.user)
-    const ticketsArr = await Ticket.find({ where: { userId: ticket.user_id } })
+    const ticketsArr = await Ticket.find(/*{ where: { userId: ticket.user_id }}*/{relations: ["user"]})
     const avgPrice = ticketsArr.map(obj => obj.price).reduce((prev, next) => prev + next);
 
     if (ticketsArr.length === 1) {
       ticket.risk += 10
+    }
+    if(ticketsArr.length !== 1) {
+      ticket.risk = 5
     }
     if (ticket.price < avgPrice) {
       ticket.risk += (avgPrice - ticket.price)
@@ -69,7 +73,7 @@ export default class TicketController {
     @Param("event_id") eventId: number,
     @Body() input: Ticket
     ) {
-      const event = await Event.findOne({where: {id: eventId}})
+      const event = await Event.findOne({relations: ["event"]}/*{where: {id: eventId}}*/)
       if (!event) throw new BadRequestError(`Event does not exist`)
       await event.save()
       

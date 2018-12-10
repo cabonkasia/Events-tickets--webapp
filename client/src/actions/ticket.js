@@ -1,6 +1,8 @@
 import request from 'superagent'
 
-export const TICKET_FETCHED = 'EVENT_FETCHED'
+export const TICKET_FETCHED = 'TICKET_FETCHED'
+export const TICKET_CREATE_SUCCESS = 'TICKET_CREATE_SUCCESS'
+
 
 
 const baseUrl = process.env.API_BASE_URL || 'http://localhost:4000'
@@ -21,10 +23,19 @@ export const loadTicket = (eventId, ticketId) => dispatch => {
   .catch(console.error)
 }
 
-// export const createTicket = () => (dispatch, getState) => {
-//   const state = getState()
-//   const jwt = state.currentUser.jwt
-//   request
-//   .get()
-// }
+const ticketCreateSuccess = ticket => ({
+  type: TICKET_CREATE_SUCCESS,
+  ticket
+})
+
+
+export const createTicket = (data, eventId) => dispatch => {
+  request
+    .post(`${baseUrl}/events/${eventId}/tickets`)
+    .send(data)
+    .then(response => {
+      dispatch(ticketCreateSuccess(response.body))
+    })
+    .catch(console.error)
+}
 

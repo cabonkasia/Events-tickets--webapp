@@ -13,8 +13,6 @@ export default (props) => {
             { props.event.tickets.map(ticket => {
                 console.log(props.event.tickets)
                 return <Link to={`/events/${props.event.id}/tickets/${ticket.id}`}>
-                {/* return <Link to={`/events/${ticket.event_id}/tickets/${ticket.id}`}> */}
-
                 <li>
                 <img src={ticket.picture}/><br/>
                 Price: {ticket.price}<br/> 
