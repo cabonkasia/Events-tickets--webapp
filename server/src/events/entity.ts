@@ -18,6 +18,9 @@ export default class Event extends BaseEntity {
   picture: string
 
   @Column('text', {nullable:false})
+  imgalt: string
+
+  @Column('text', {nullable:false})
   startDate: Date
 
   @Column('text', {nullable:false})

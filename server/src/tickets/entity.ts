@@ -18,6 +18,9 @@ export default class Ticket extends BaseEntity {
   @Column('text', {nullable:true})
   picture?: string
 
+  @Column('text', {nullable:true})
+  imgalt?: string
+
   @Column('int', {nullable:true})
   price: number
 

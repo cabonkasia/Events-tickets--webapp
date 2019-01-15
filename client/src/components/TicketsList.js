@@ -14,7 +14,7 @@ export default (props) => {
                 console.log(props.event.tickets)
                 return <Link to={`/events/${props.event.id}/tickets/${ticket.id}`}>
                 <li>
-                <img src={ticket.picture}/><br/>
+                <img src={ticket.picture} alt={ticket.imgalt}/><br/>
                 Price: {ticket.price}<br/> 
                 Description: {ticket.description}<br/>
                 </li>

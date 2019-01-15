@@ -11,7 +11,7 @@ export default (props) => {
             { props.events.data.map(event => {
                 return <Link to={`/events/${event.id}/tickets`}>
                 <li>
-                <img src={event.picture}/><br/>
+                <img src={event.picture} alt={event.imgalt}/><br/>
                 Name: {event.name}<br/> 
                 Description: {event.description}<br/>
                 Start date: {event.startDate}<br/>
