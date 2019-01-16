@@ -3,7 +3,7 @@
 This app was a final project at Codaisseur Full-Stack Webdevelopment Academy. 
 
 ### Description
-At this point the app lets users sign up, sign in, add events and comments via HTTPie and display the events, tickets and comments from the client side.
+At this point the app lets users sign up, sign in, add events, tickets and comments via HTTPie and display the events, tickets and comments from the client side.
 
 
 **Endpoints:**
@@ -32,6 +32,8 @@ TICKETS:
 
 `GET /events/:event_id/tickets/:ticket_id`: gets a single ticket for a specified event.
 
+`POST /events/:event_id/tickets`: creates new ticket for a specified event. 
+
 COMMENTS:
 
 `GET /events/:event_id/tickets/:ticket_id/comments`: gets all comments for a specified ticket.
@@ -42,6 +44,8 @@ COMMENTS:
 ### Setup
 
 `yarn install` both for client and server side to install the dependencies
+
+`yarn compile` to compile .ts files into .js on server side
 
 `yarn start` to run both the server and client
 
