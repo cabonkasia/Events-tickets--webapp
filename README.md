@@ -5,13 +5,18 @@ This app was a final project at Codaisseur Full-Stack Webdevelopment Academy.
 ### Description
 At this point the app lets users sign up, sign in, add events and comments via HTTPie and display the events, tickets and comments from the client side.
 
+
 **Endpoints:**
+
 LOGINS:
+
 `POST /logins`: login with email and password. Returns JWT token that's valid for 4 hours.
+
 USERS:
 `GET /users/:id`: gets the current user with all the comments and tickets created. JWT token required.
 `GET /users`: gets all users with all the comments and tickets created respectively. JWT token required.
 `POST /users`: creates a new user.
+
 EVENTS:
 `GET /events`: gets all events. 
 `POST /events`: creates new event. JWT token required.
