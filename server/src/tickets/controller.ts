@@ -22,8 +22,8 @@ export default class TicketController {
 
   @Get("/events/:event_id/tickets/:ticket_id")
   async getTicket(
-    @Param("event_id") id: number,
-    @Param("ticket_id") tid: number
+    // @Param("event_id") id: number,
+    // @Param("ticket_id") tid: number
   ) {
     const ticket = await Ticket.findOne(/*{ where: { eventId: id, id: tid } }*/{relations: ["event", "user"]})
 

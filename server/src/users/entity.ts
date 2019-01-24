@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import Comment from '../comments/entity'
 import Ticket from '../tickets/entity'
-import Event from '../events/entity'
+// import Event from '../events/entity'
 import { IsString, MinLength, IsEmail } from 'class-validator'
 import * as bcrypt from 'bcrypt'
 
@@ -43,7 +43,7 @@ export default class User extends BaseEntity {
 
   @OneToMany(_ => Ticket, ticket => ticket.user/*, {eager:true}*/)
   tickets: Ticket[]
-  //17.01------------------>:
+
   // @OneToMany(_ => Event, event => event.user)
   // events: Event[]
 

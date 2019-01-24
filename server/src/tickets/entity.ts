@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, OneToMany, JoinColumn } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, OneToMany } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import Event from '../events/entity'
 import User from '../users/entity'
@@ -24,19 +24,11 @@ export default class Ticket extends BaseEntity {
   @Column('int', {nullable:true})
   price: number
 
-  // @ManyToOne(_ => Event, event => event.tickets)
-  // @JoinColumn({ name: "eventId" })
   @ManyToOne(_ => Event, event => event.tickets/*, {eager:true}*/)
   event: Event
 
-  // @Column('int', { nullable: true })
-  // eventId: number
-
   @ManyToOne(_ => User, user => user.tickets /*,{eager:true}*/)
   user: User
-
-  // @Column('int', { nullable: true })
-  // userId: number
 
   @OneToMany(_=> Comment, comment => comment.ticket, {eager:true})
   comments: Comment[]
