@@ -1,5 +1,5 @@
 import React from 'react'
-import {loadEvent} from '../actions/events'
+import {loadEvent} from '../../actions/events'
 import {connect} from 'react-redux'
 import TicketsList from './TicketsList'
 import CreateTicketForm from './CreateTicketForm'

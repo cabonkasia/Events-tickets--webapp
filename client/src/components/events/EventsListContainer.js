@@ -1,5 +1,5 @@
 import React from 'react'
-import {loadEvents} from '../actions/events'
+import {loadEvents} from '../../actions/events'
 import {connect} from 'react-redux'
 import EventsList from './EventsList'
 

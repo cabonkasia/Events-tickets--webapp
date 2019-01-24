@@ -6,7 +6,6 @@ import User from '../users/entity'
 
 @Controller()
 export default class TicketController {
-//-----------GETS only TICKET AND EVENT.NAME----------//
   @Get("/events/:event_id/tickets")
   async getAllTickets(
       @Param("event_id") id: number
@@ -20,19 +19,19 @@ export default class TicketController {
       tickets: event.tickets
       }
     }
-//--------------------------------------------------------//
 
   @Get("/events/:event_id/tickets/:ticket_id")
   async getTicket(
     @Param("event_id") id: number,
     @Param("ticket_id") tid: number
   ) {
-    const ticket = await Ticket.findOne({ where: { eventId: id, id: tid } }/*{relations: ["event", "user"]}*/)
+    const ticket = await Ticket.findOne(/*{ where: { eventId: id, id: tid } }*/{relations: ["event", "user"]})
 
     if (!ticket) throw new NotFoundError(`Ticket does not exist`)
 
-    // console.log(ticket.user)
     const ticketsArr = await Ticket.find(/*{ where: { userId: ticket.user_id }}*/{relations: ["user"]})
+    console.log(ticket.user)
+
     const avgPrice = ticketsArr.map(obj => obj.price).reduce((prev, next) => prev + next);
 
     if (ticketsArr.length === 1) {
@@ -70,10 +69,10 @@ export default class TicketController {
   @Post("/events/:event_id/tickets")
   async createTicket(
     @CurrentUser() user: User,
-    @Param("event_id") eventId: number,
-    @Body() input: Ticket
+    @Body() input: Ticket,
+    @Param("event_id") eventId: number
     ) {
-      const event = await Event.findOne({relations: ["event"]}/*{where: {id: eventId}}*/)
+      const event = await Event.findOne({ where: { eventId } })
       if (!event) throw new BadRequestError(`Event does not exist`)
       await event.save()
       

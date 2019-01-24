@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {createTicket} from '../actions/ticket'
+import {createTicket} from '../../actions/ticket'
 
 
 class CreateTicketForm extends Component {

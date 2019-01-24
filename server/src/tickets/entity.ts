@@ -32,7 +32,7 @@ export default class Ticket extends BaseEntity {
   // @Column('int', { nullable: true })
   // eventId: number
 
-  @ManyToOne(_ => User, user => user.tickets)
+  @ManyToOne(_ => User, user => user.tickets /*,{eager:true}*/)
   user: User
 
   // @Column('int', { nullable: true })
