@@ -7,6 +7,7 @@ import TicketsListContainer from './components/tickets/TicketsListContainer'
 import TicketContainer from './components/tickets/TicketContainer';
 import HomePage from './components/homepage/HomePage';
 import SignupContainer from './components/homepage/SignupContainer';
+import LoginContainer from './components/homepage/LoginContainer';
 
 class App extends Component {
   render() {
@@ -14,7 +15,8 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <Route path="/" exact component={HomePage} />
-          <Route path="/users" exact component={SignupContainer} />
+          {/* <Route path="/users" exact component={SignupContainer} /> */}
+          <Route path="/logins" exact component={LoginContainer} />
           <Route path="/events" exact component={EventsListContainer} />
           <Route path="/events/:id/tickets" exact component={TicketsListContainer} />
           <Route path="/events/:event_id/tickets/:ticket_id" exact component={TicketContainer}/>

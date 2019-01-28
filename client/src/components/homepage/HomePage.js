@@ -1,18 +1,32 @@
 import React from 'react'
-import SignupContainer from './SignupContainer';
-// import LoginForm from '../login/LoginForm'
+import { connect } from 'react-redux'
+import { loadImage } from '../../actions/events'
+import SignupContainer from './SignupContainer'
+import LoginContainer from './LoginContainer'
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
+
+  componentDidMount() {
+    this.props.loadImage()
+  }
 
   render() {
     return (
-      <main>
-
+      <main className="background">
+        <img src={this.props.image} />
         <div>
           <SignupContainer />
-          {/* <LoginForm /> */}
+          <LoginContainer />
         </div>
       </main>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    image: state.image
+  }
+}
+
+export default connect(mapStateToProps, { loadImage })(HomePage)

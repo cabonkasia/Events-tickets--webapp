@@ -12,7 +12,17 @@ export default class EventController {
     }
   }
 
-  @Authorized()
+  @Get("/")
+  async getImage() {
+    const e = await Event.findOne({where: {id: 1}})
+    if(!e) return 'No event found'
+    const image = e.picture
+    return {
+      image
+    }
+  }
+
+  // @Authorized()
   @Post("/events")
   createEvent(
     @Body() event: Event

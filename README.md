@@ -61,6 +61,7 @@ Access endpoints with HTTPie commands on `localhost:4000`
 - TypeORM
 - koa
 - routing-controllers
+- superagent
 
 ### License
 MIT License - Copyright © 2018 - Katarzyna Caboń

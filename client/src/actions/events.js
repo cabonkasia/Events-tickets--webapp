@@ -1,10 +1,9 @@
 import request from 'superagent'
+import {baseUrl} from '../constants'
 
 export const EVENTS_FETCHED = 'EVENTS_FETCHED'
 export const EVENT_FETCHED = 'EVENT_FETCHED'
-
-
-const baseUrl = process.env.API_BASE_URL || 'http://localhost:4000'
+export const IMAGE_FETCHED = 'IMAGE_FETCHED'
 
 
 const eventsFetched = events => ({
@@ -15,6 +14,11 @@ const eventsFetched = events => ({
 const eventFetched = event => ({
   type: EVENT_FETCHED,
   event
+})
+
+const imageFetched = image => ({
+  type: IMAGE_FETCHED,
+  image
 })
 
 export const loadEvents = () => (dispatch, getState) => {
@@ -37,4 +41,15 @@ export const loadEvent = (eventId) => dispatch => {
   .catch(console.error)
 }
 
+export const loadImage = () => (dispatch, getState) => {
+  console.log("======> loadImage")
+  // if (getState().image) 
+  // return
+  request
+  .get(`${baseUrl}/`)
+  .then(response => {
+    dispatch(imageFetched(response.body))
+  })
+  .catch(console.error)
+}
 

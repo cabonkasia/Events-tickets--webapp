@@ -1,11 +1,10 @@
 import request from 'superagent'
+import {baseUrl} from '../constants'
+
 
 export const TICKET_FETCHED = 'TICKET_FETCHED'
 export const TICKET_CREATE_SUCCESS = 'TICKET_CREATE_SUCCESS'
 
-
-
-const baseUrl = process.env.API_BASE_URL || 'http://localhost:4000'
 
 
 const ticketFetched = ticket => ({

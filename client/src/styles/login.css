@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+.button {
+  width: 210px;
+  height: 50px;
+  border-radius: 10%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+}
+.login {
+  color: #260a8a;
+  background-color: #fffbff;
+}
+.signup {
+  color: #fffbff;
+  background-color: #260a8a;
+}
