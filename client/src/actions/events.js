@@ -42,11 +42,9 @@ export const loadEvent = (eventId) => dispatch => {
 }
 
 export const loadImage = () => (dispatch, getState) => {
-  console.log("======> loadImage")
-  // if (getState().image) 
-  // return
-  request
-  .get(`${baseUrl}/`)
+  if (getState().image) 
+  return
+  request(`${baseUrl}/`)
   .then(response => {
     dispatch(imageFetched(response.body))
   })

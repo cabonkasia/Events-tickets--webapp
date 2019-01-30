@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.imgbox {
+  display: grid;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-background {
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  // background-size: cover;
+}
+
+.login-signup {
+  position: absolute;
+  z-index: 999;
+  bottom: 30px;
+  width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@btn-dark: #260a8a;
+@btn-light: #FFFBFF;
+
+.button {
+  width: 160px;
+  height: 70px;
+  border-radius: 10%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 35px;
+  margin: 5%;
+}
+
+form > input {
+  border-radius: 18%;
+  height: 20px;
+  width: 80%;
+}
+
+form > label {
+  color: white;
+}
+
+.login {
+  color: @btn-dark;
+  background-color: @btn-light;
+}
+
+.signup {
+  color: @btn-light;
+  background-color: @btn-dark;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  width: 20vw;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  border-radius: 8%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.login-form {
+  .form()
+}
+
+.signup-form {
+  .form()
+}
+
+@border: 1px solid yellow;
+
+.form-el {
+  // border: @border;
+  width: 15vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
-import '../../styles/login.css'
+import '../../styles/home.css'
+
 
 export default class SignupForm extends PureComponent {
 	state = {}
@@ -20,28 +21,31 @@ export default class SignupForm extends PureComponent {
 	render() {
 		return (
 			<div className="signup-form">
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={this.handleSubmit} className="form-el">
 					<button className="button signup" type="submit">Sign up</button>
 					<label>
 						Email
-            <input type="email" name="email" value={
-							this.state.email || ''
-						} onChange={this.handleChange} />
 					</label>
+					<input type="email" name="email" value={
+						this.state.email || ''
+					} onChange={this.handleChange} />
+
 
 					<label>
 						Password
-  					<input type="password" name="password" value={
-							this.state.password || ''
-						} onChange={this.handleChange} />
 					</label>
+					<input type="password" name="password" value={
+						this.state.password || ''
+					} onChange={this.handleChange} />
+
 
 					<label>
 						Confirm password
-  					<input type="password" name="confirmPassword" value={
-							this.state.confirmPassword || ''
-						} onChange={this.handleChange} />
 					</label>
+					<input type="password" name="confirmPassword" value={
+						this.state.confirmPassword || ''
+					} onChange={this.handleChange} />
+
 
 					{
 						this.state.password &&
