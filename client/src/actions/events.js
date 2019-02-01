@@ -4,6 +4,7 @@ import {baseUrl} from '../constants'
 export const EVENTS_FETCHED = 'EVENTS_FETCHED'
 export const EVENT_FETCHED = 'EVENT_FETCHED'
 export const IMAGE_FETCHED = 'IMAGE_FETCHED'
+export const EVENT_CREATE_SUCCESS = 'EVENT_CREATE_SUCCESS'
 
 
 const eventsFetched = events => ({
@@ -20,6 +21,12 @@ const imageFetched = image => ({
   type: IMAGE_FETCHED,
   image
 })
+
+const eventCreateSuccess = event => ({
+  type: EVENT_CREATE_SUCCESS,
+  event
+})
+
 
 export const loadEvents = () => (dispatch, getState) => {
   console.log("events loaded")
@@ -50,4 +57,15 @@ export const loadImage = () => (dispatch, getState) => {
   })
   .catch(console.error)
 }
+
+export const createEvent = (data) => dispatch => {
+  request
+    .post(`${baseUrl}/events`)
+    .send(data)
+    .then(response => {
+      dispatch(eventCreateSuccess(response.body))
+    })
+    .catch(console.error)
+}
+
 

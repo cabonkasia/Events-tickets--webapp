@@ -23,7 +23,7 @@ export default class SignupForm extends PureComponent {
 			<div className="signup-form">
 				<form onSubmit={this.handleSubmit} className="form-el">
 					<button className="button signup" type="submit">Sign up</button>
-					<label>
+					<label className="email-margin">
 						Email
 					</label>
 					<input type="email" name="email" value={
@@ -31,7 +31,7 @@ export default class SignupForm extends PureComponent {
 					} onChange={this.handleChange} />
 
 
-					<label>
+					<label className="pass-margin">
 						Password
 					</label>
 					<input type="password" name="password" value={
@@ -39,7 +39,7 @@ export default class SignupForm extends PureComponent {
 					} onChange={this.handleChange} />
 
 
-					<label>
+					<label className="pass-conf-margin">
 						Confirm password
 					</label>
 					<input type="password" name="confirmPassword" value={

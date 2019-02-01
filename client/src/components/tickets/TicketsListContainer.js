@@ -12,10 +12,8 @@ class TicketsListContainer extends React.Component {
 
   render() {
     return <div>
-          <TicketsList 
-          event={this.props.event}
-          />
-          <CreateTicketForm/>
+          <TicketsList event={this.props.event} />
+          <CreateTicketForm />
           </div>
   }
 }

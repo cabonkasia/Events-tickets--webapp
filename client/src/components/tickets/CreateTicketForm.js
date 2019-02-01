@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {createTicket} from '../../actions/ticket'
+import '../../styles/ticketform.css'
 
 
 class CreateTicketForm extends Component {
@@ -34,12 +35,13 @@ class CreateTicketForm extends Component {
       <div>
   
         <form onSubmit={this.handleSubmit}>
-          <label>Picture</label>
+          <label className="label">Picture</label>
           <input onChange={this.handleChange} name="picture" value={this.picture}></input>
-          <label>Price</label>
           <input onChange={this.handleChange} name="price" value={this.price}></input>
-          <label>Description</label>
+          <label className="label">Price</label>
           <input onChange={this.handleChange} name="description" value={this.description}></input>
+          <label className="label">Description</label>
+
           <input type="submit"></input>
         </form>
   
