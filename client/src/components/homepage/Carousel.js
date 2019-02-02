@@ -8,17 +8,27 @@ export default (props) => {
 
   console.log(props.events.events)
   return (
-    <div id="carouselExampleFade" className="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
+    <div className="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80" className="d-block w-100" alt="..." />
-        </div>
-        <div className="carousel-item">
-          <img src="https://images.unsplash.com/photo-1540206395-68808572332f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1481&q=80" className="d-block w-100" alt="..." />
-        </div>
-        <div className="carousel-item">
-          <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80" className="d-block w-100" alt="..." />
-        </div>
+
+        {props.events.events.map(event => {
+          if(event.id === 1)
+
+            return (
+              <div className="imgbox carousel-item active">
+                <img className="home-background d-block w-100" src={event.picture} alt={event.imgalt} />
+              </div>
+            )
+
+            return (
+              <div className="imgbox carousel-item">
+              <img className="home-background d-block w-100" src={event.picture} alt={event.imgalt} />
+            </div>
+
+            )
+        })}
+
+
       </div>
       <a className="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="false"></span>
