@@ -17,11 +17,6 @@ const eventFetched = event => ({
   event
 })
 
-const imageFetched = image => ({
-  type: IMAGE_FETCHED,
-  image
-})
-
 const eventCreateSuccess = event => ({
   type: EVENT_CREATE_SUCCESS,
   event
@@ -29,7 +24,6 @@ const eventCreateSuccess = event => ({
 
 
 export const loadEvents = () => (dispatch, getState) => {
-  console.log("events loaded")
   if (getState().events) 
   return
   request(`${baseUrl}/events`)
@@ -48,15 +42,16 @@ export const loadEvent = (eventId) => dispatch => {
   .catch(console.error)
 }
 
-export const loadImage = () => (dispatch, getState) => {
-  if (getState().image) 
+export const loadEventsHomePage = () => (dispatch, getState) => {
+  if (getState().events) 
   return
   request(`${baseUrl}/`)
   .then(response => {
-    dispatch(imageFetched(response.body))
+    dispatch(eventsFetched(response.body))
   })
   .catch(console.error)
 }
+
 
 export const createEvent = (data) => dispatch => {
   request

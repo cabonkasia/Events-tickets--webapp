@@ -5,7 +5,6 @@ import ticket from './ticket';
 import users from './users';
 import signup from './signup';
 import currentUser from './currentUser';
-import image from './image';
 
 
 export default combineReducers({
@@ -14,6 +13,5 @@ export default combineReducers({
   ticket,
   users,
   signup,
-  currentUser,
-  image
+  currentUser
 })
