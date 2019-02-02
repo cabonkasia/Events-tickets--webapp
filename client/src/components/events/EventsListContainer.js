@@ -11,7 +11,6 @@ class EventsListContainer extends React.Component {
 
 
   render() {
-    console.log('############', this.props)
     return <div>
           <EventsList events={this.props.events} />
           <CreateEventForm />
