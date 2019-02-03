@@ -17,12 +17,16 @@ export default (props) => {
             return (
               <div className="imgbox carousel-item active">
                 <img className="home-background d-block w-100" src={event.picture} alt={event.imgalt} />
+                <p className="event-details">{event.name} <br/>
+                {event.startDate} - {event.endDate}</p>
               </div>
             )
 
             return (
               <div className="imgbox carousel-item">
               <img className="home-background d-block w-100" src={event.picture} alt={event.imgalt} />
+              <p className="event-details">{event.name} <br/>
+                {event.startDate} - {event.endDate}</p>
             </div>
 
             )

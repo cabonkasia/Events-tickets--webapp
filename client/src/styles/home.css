@@ -102,3 +102,12 @@ form > label {
   flex-wrap: wrap;
   justify-content: center;
 }
+.event-details {
+  position: absolute;
+  z-index: 999;
+  top: 80px;
+  left: 250px;
+  color: white;
+  font-size: 30px;
+}
+
