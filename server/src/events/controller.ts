@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Authorized } from 'routing-controllers'
+import { Controller, Get, Post, Body, Authorized, Put, Param, NotFoundError } from 'routing-controllers'
 import Event from './entity'
 
 
@@ -14,17 +14,9 @@ export default class EventController {
 
   @Get("/")
   async getEventsDetails() {
-    // const events = await Event.find()
     return {
       events: await Event.find()
     }
-    // const e = await Event.findOne({where: {id: 2}})
-    // if(!e) return 'No event found'
-    // const image = e.picture
-    // console.log(image)
-    // return {
-    //   image
-    // }
   }
 
   // @Authorized()
@@ -35,4 +27,15 @@ export default class EventController {
     return event.save()
   }
 
+  // @Authorized()
+  @Put("/events/:event_id") 
+  async updateEvent(
+    @Param('event_id') eventId: string,
+    @Body() update: Partial<Event>
+  ) {
+    const event = await Event.findOne(parseInt(eventId))
+    if (!event) throw new NotFoundError('Cannot find page')
+    return Event.merge(event, update).save()
+  }
 }
+

@@ -65,7 +65,7 @@ export default class TicketController {
   }
 
 
-  @Authorized()
+  // @Authorized()
   @Post("/events/:event_id/tickets")
   async createTicket(
     @CurrentUser() user: User,
@@ -81,7 +81,8 @@ export default class TicketController {
         event,
         description: input.description,
         picture: input.picture,
-        price: input.price
+        price: input.price,
+        imgalt: input.imgalt
        }).save()
 
       return ticket

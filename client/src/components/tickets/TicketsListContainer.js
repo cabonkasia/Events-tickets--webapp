@@ -7,7 +7,6 @@ import CreateTicketForm from './CreateTicketForm'
 class TicketsListContainer extends React.Component {
   componentDidMount() {
     this.props.loadEvent(Number(this.props.match.params.id))
-    console.log(this.props)
   }
 
   render() {

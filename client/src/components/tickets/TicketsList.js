@@ -2,7 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default (props) => {
-    if(!props.event || !props.event.tickets) 
+    console.log(props)
+    if(!props.event 
+        || !props.event.tickets
+        ) 
     return <h1>No tickets.</h1>
 
 

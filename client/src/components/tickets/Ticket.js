@@ -1,10 +1,12 @@
 import React from 'react'
 
 
+
 export default (props) => {
-    
-    if(props.event === null) 
-    return <h1>No tickets.</h1>
+    console.log(props.event)
+
+    if(!props.event) 
+    return <h1>No ticket.</h1>
 
     return (
       <div>
@@ -14,6 +16,9 @@ export default (props) => {
             {props.event.tickets
             .find(ticket => (ticket.id === Number(props.params.ticket_id))).comments
             .map(comment => {
+                if(!comment)
+                return "No comments yet"
+
                 return <li>
                     {comment.text}
                 </li>

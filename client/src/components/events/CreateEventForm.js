@@ -39,7 +39,7 @@ class CreateEventForm extends Component {
     console.log(this.props)
     return (
       <div>
-
+        <p>Create new event:</p>
         <form onSubmit={this.handleSubmit}>
 
           <label className="label">Event name</label>

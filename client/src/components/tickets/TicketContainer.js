@@ -2,6 +2,7 @@ import React from 'react'
 import {loadTicket} from '../../actions/ticket'
 import {connect} from 'react-redux'
 import Ticket from './Ticket'
+import EventDetails from './EventDetails'
 
 
 class TicketContainer extends React.Component {
@@ -13,8 +14,10 @@ class TicketContainer extends React.Component {
   }
   render() {
     return <div>
+          <EventDetails
+          event={this.props.event}
+          params={this.props.match.params} />
           <Ticket 
-          // ticket={this.props.ticket}
           event={this.props.event}
           params={this.props.match.params} />
           </div>
@@ -22,11 +25,7 @@ class TicketContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  // ticket: state.ticket,
-  // <-------------->
   event: state.event
-  // <-------------->
-
 })
 
 export default connect(mapStateToProps, {loadTicket})(TicketContainer)
