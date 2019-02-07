@@ -17,7 +17,7 @@ import Ticket from '../tickets/entity'
     user: User
 
     @ManyToOne(_ => Ticket, ticket => ticket.comments)
-    ticket: Ticket[]
+    ticket: Ticket
 
 
   }

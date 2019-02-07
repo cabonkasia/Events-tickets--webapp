@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, NotFoundError, CurrentUser, BadRequestError, Authorized } from 'routing-controllers'
+import { Controller, Get, Post, Body, Param, NotFoundError, CurrentUser, BadRequestError, /*Authorized*/ } from 'routing-controllers'
 import Ticket from './entity'
 import Event from '../events/entity'
 import User from '../users/entity'

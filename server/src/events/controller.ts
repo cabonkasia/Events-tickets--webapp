@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Authorized, Put, Param, NotFoundError } from 'routing-controllers'
+import { Controller, Get, Post, Body, /*Authorized,*/ Put, Param, NotFoundError } from 'routing-controllers'
 import Event from './entity'
 
 
