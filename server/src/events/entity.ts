@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, /*ManyToOne*/ } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
 import Ticket from '../tickets/entity'
-// import User from '../users/entity';
+import User from '../users/entity';
 
 @Entity()
 export default class Event extends BaseEntity {
@@ -30,7 +30,7 @@ export default class Event extends BaseEntity {
   @OneToMany(_ => Ticket, ticket => ticket.event, {eager:true})
   tickets: Ticket[]
 
-  // @ManyToOne(_=> User, user => user.events)
-  // user: User[]
+  @ManyToOne(_=> User, user => user.events)
+  user: User[]
 
 }

@@ -32,15 +32,19 @@ export default class TicketController {
     const ticketsArr = await Ticket.find(/*{ where: { userId: ticket.user_id }}*/{relations: ["user"]})
     console.log(ticket.user)
 
-    const avgPrice = ticketsArr.map(obj => obj.price).reduce((prev, next) => prev + next);
+    let avgPrice = ticketsArr.map(t => t.price).reduce((prev, next) => prev + next);
 
     if (ticketsArr.length === 1) {
       ticket.risk += 10
     }
     if(ticketsArr.length !== 1) {
-      ticket.risk = 5
+      ticket.risk += 5
     }
     if (ticket.price < avgPrice) {
+      if (!Number.isInteger(avgPrice))
+        avgPrice.toFixed(1)
+          avgPrice
+
       ticket.risk += (avgPrice - ticket.price)
     }
     if (ticket.price > avgPrice) {
