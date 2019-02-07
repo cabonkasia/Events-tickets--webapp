@@ -4,7 +4,7 @@ import React from 'react'
 export default (props) => {
     
     if(props.event === null) 
-    return <h1>No tickets.</h1>
+    return <h1>This ticket does not exist.</h1>
 
     return (
       <div>
@@ -12,11 +12,16 @@ export default (props) => {
         <h1>Ticket for {props.event.name}</h1>
         <ul>Comments:
             {props.event.tickets
-            .find(ticket => (ticket.id === Number(props.params.ticket_id))).comments
-            .map(comment => {
-                return <li>
-                    {comment.text}
-                </li>
+            .map(ticket => {
+                if(ticket.id === Number(props.params.ticket_id))
+                    return ticket.comments
+                    .map(comment => 
+                         <li>
+                            {comment.text}
+                        </li>
+                    )
+                    return "No comments"
+                
             })
             
             }
