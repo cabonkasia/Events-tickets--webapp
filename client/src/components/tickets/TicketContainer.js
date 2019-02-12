@@ -2,7 +2,7 @@ import React from 'react'
 import {loadTicket} from '../../actions/ticket'
 import {connect} from 'react-redux'
 import Ticket from './Ticket'
-import EventDetails from './EventDetails'
+// import EventDetails from './EventDetails'
 
 
 class TicketContainer extends React.Component {
@@ -14,9 +14,9 @@ class TicketContainer extends React.Component {
   }
   render() {
     return <div>
-          <EventDetails
+          {/* <EventDetails
           event={this.props.event}
-          params={this.props.match.params} />
+          params={this.props.match.params} /> */}
           <Ticket 
           event={this.props.event}
           params={this.props.match.params} />
