@@ -11,9 +11,9 @@ class LoginContainer extends PureComponent {
 
 	render() {
     console.log(this.props)
-		// if (this.props.currentUser) return (
-		// 	<Redirect to="/events" />
-		// )
+		if (this.props.currentUser) return (
+			<Redirect to="/events" />
+		)
 
 		return (
 			<div>
