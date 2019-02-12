@@ -72,7 +72,7 @@ export default class TicketController {
     @Body() input: Ticket,
     @Param("event_id") eventId: number
     ) {
-      const event = await Event.findOne({ where: { eventId } })
+      const event = await Event.findOne({ where: { id: eventId } })
       if (!event) throw new BadRequestError(`Event does not exist`)
       await event.save()
       
