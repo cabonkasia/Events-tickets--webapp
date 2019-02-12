@@ -6,7 +6,7 @@ import EventsListContainer from './components/events/EventsListContainer'
 import TicketsListContainer from './components/tickets/TicketsListContainer'
 import TicketContainer from './components/tickets/TicketContainer'
 import HomePage from './components/homepage/HomePage'
-import LoginContainer from './components/homepage/LoginContainer'
+// import LoginContainer from './components/homepage/LoginContainer'
 import Logout from './components/logout/Logout'
 
 class App extends Component {
