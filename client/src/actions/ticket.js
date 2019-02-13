@@ -28,9 +28,14 @@ export const loadTicket = (eventId, ticketId) => dispatch => {
 }
 
 
-export const createTicket = (data, eventId) => dispatch => {
+export const createTicket = (data, eventId) => (dispatch, getState) => {
+
+  const state = getState()
+  const jwt = state.currentUser.jwt
+  
   request
     .post(`${baseUrl}/events/${eventId}/tickets`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => {
       dispatch(ticketCreateSuccess(response.body))
