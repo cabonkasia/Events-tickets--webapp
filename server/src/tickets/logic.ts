@@ -1,6 +1,7 @@
 
-export const isOnlyTicket = (allTicketsOfAuthor, risk) => {
- return allTicketsOfAuthor.length === 1 ? risk += 10 : risk
+export const isOnlyTicket = (allTicketsOfAuthor) => {
+  let result = 0;
+  return allTicketsOfAuthor.length === 1 ? result += 10 : result;
 }
 
 export const averagePrice = (allTicketsOfEvent) => {
@@ -8,29 +9,34 @@ export const averagePrice = (allTicketsOfEvent) => {
   return Math.round((tickets.map(ticket => ticket.price).reduce((prev, next) => prev + next)) / tickets.length);
 }
 
-export const isCheaper = (ticket, averagePrice, risk) => {
+export const isCheaper = (price, averagePrice) => {
   const average = averagePrice
-  if (ticket.price < average)
-    return risk += (average - ticket.price)
+  let result = 0;
+  if (price < average)
+    return result += (average - price)
 
-  if (ticket.price > averagePrice) {
-    const difference = ticket.price - average
-    return difference < 10 ? risk -= difference : risk -= 10
+  if (price > average) {
+    const difference = price - average
+    return difference < 10 ? result -= difference : result -= 10
   }
-  return risk
+  return result;
 }
 
-export const inBussinessHours = (ticket, risk) => {
-  const time = ticket.timestamp.slice(11, 13).concat(ticket.timestamp.slice(14, 16))
+export const inBussinessHours = (timestamp) => {
+  let result = 0;
+  const time = timestamp.slice(11, 13).concat(timestamp.slice(14, 16))
   const bh = parseInt(time) >= 900 && parseInt(time) <= 1700
-  if (bh) return risk -= 10
-  if (!bh) return risk += 10
+  if (bh) return result -= 10
+  if (!bh) return result += 10
+
+  return result;
 }
 
-export const hasManyComments = (ticket, risk) => {
-  if (ticket.comments.length > 3)
-    return risk += 5
-    return risk
+export const hasManyComments = (comments) => {
+  let result = 0;
+  if (comments.length > 3)
+    return result += 5;
+  return result;
 }
 
 export const accurateRisk = (risk) => {

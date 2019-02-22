@@ -27,12 +27,11 @@ export default class TicketController {
     @Param("ticket_id") tid: string
   ) {
     const ticket = await Ticket.findOne({ where: { id: parseInt(tid) }, relations: ["event", "user"] })
-
     if (!ticket) throw new NotFoundError(`Ticket does not exist`)
+
     const id = ticket.user.id
 
     const allTickets = await Ticket.find({ relations: ["user", "event"] })
-    
 
     const sameAuthorTickets = allTickets.filter(ticket => {
       if (!ticket.user)
@@ -49,23 +48,23 @@ export default class TicketController {
     })
 
     const average = averagePrice(eventTickets)
+    const { price, timestamp, comments } = ticket
 
-    let finalRisk = 0
-    finalRisk = isOnlyTicket(sameAuthorTickets, finalRisk)
-    finalRisk = isCheaper(ticket, average, finalRisk)
-    finalRisk = inBussinessHours(ticket, finalRisk)
-    finalRisk = hasManyComments(ticket, finalRisk)
-    finalRisk = accurateRisk(finalRisk)
 
-    
-    console.log(sameAuthorTickets)
-    console.log(finalRisk)
-    
+    let risk = 0
+      + isOnlyTicket(sameAuthorTickets)
+      + isCheaper(price, average)
+      + inBussinessHours(timestamp)
+      + hasManyComments(comments);
+
+    let finalRisk = accurateRisk(risk);
+
+
     return {
       finalRisk,
       ticket
     }
-    
+
   }
 
 
