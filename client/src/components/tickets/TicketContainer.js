@@ -1,5 +1,6 @@
 import React from 'react'
 import {loadTicket} from '../../actions/ticket'
+import { loadRisk } from '../../actions/risk'
 import {connect} from 'react-redux'
 import Ticket from './Ticket'
 
@@ -7,7 +8,8 @@ import Ticket from './Ticket'
 class TicketContainer extends React.Component {
 
   componentDidMount() {
-    this.props.loadTicket(/*this.props.event.id*/Number(this.props.match.params.id), /*ticketId*/Number(this.props.match.params.ticket_id))
+    this.props.loadTicket(Number(this.props.match.params.event_id), Number(this.props.match.params.ticket_id));
+    this.props.loadRisk(Number(this.props.match.params.event_id), Number(this.props.match.params.ticket_id))
 
     console.log(this.props.match.params)
   }
@@ -16,7 +18,8 @@ class TicketContainer extends React.Component {
           <Ticket 
           // ticket={this.props.ticket}
           event={this.props.event}
-          params={this.props.match.params} />
+          params={this.props.match.params}
+          risk={this.props.risk} />
           </div>
   }
 }
@@ -24,9 +27,10 @@ class TicketContainer extends React.Component {
 const mapStateToProps = state => ({
   // ticket: state.ticket,
   // <-------------->
-  event: state.event
+  event: state.event,
+  risk: state.risk
   // <-------------->
 
 })
 
-export default connect(mapStateToProps, {loadTicket})(TicketContainer)
+export default connect(mapStateToProps, {loadTicket, loadRisk})(TicketContainer)
