@@ -14,17 +14,9 @@ export default class EventController {
 
   @Get("/")
   async getEventsDetails() {
-    // const events = await Event.find()
     return {
       events: await Event.find()
     }
-    // const e = await Event.findOne({where: {id: 2}})
-    // if(!e) return 'No event found'
-    // const image = e.picture
-    // console.log(image)
-    // return {
-    //   image
-    // }
   }
 
   // @Authorized()

@@ -58,7 +58,7 @@ export default class TicketController {
       + hasManyComments(comments);
 
     let finalRisk = accurateRisk(risk);
-
+    
 
     return {
       finalRisk,
