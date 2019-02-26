@@ -8,7 +8,7 @@ export default (props) => {
     return (
         <ol>
             <h1>EVENTS</h1>
-            { props.events.data.map(event => {
+            { props.events.map(event => {
                 return <Link to={`/events/${event.id}/tickets`}>
                 <li>
                 <img src={event.picture} alt={event.imgalt}/><br/>

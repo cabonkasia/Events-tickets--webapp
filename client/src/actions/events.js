@@ -37,6 +37,7 @@ export const loadEvent = (eventId) => dispatch => {
   request
   .get(`${baseUrl}/events/${eventId}/tickets`)
   .then(response => {
+    console.log(response.body)
     dispatch(eventFetched(response.body))
   })
   .catch(console.error)

@@ -6,20 +6,35 @@ export default (props) => {
 
     return (
         <div>
-            {console.log(props.event.tickets)}
+            {console.log(props.params)}
             <h1>Ticket for {props.event.name}</h1>
+            <h3>Fraud risk:
+            {props.risk}
+
+            </h3>
             <ul>Comments:
-{props.event.tickets
+            {props.event.tickets
                     .map(ticket => {
-                        if (ticket.id === Number(props.params.ticket_id))
-                            return ticket.comments
-                                .map(comment =>
-                                    <li>
-                                        {comment.text}
-                                    </li>
-                                )
-                        return "No comments"
+                        if (ticket.id === Number(props.params.ticket_id)) {
+                            if (ticket.comments.length !== 0) {
+                                return ticket.comments
+                                    .map(comment => {
+                                        return <li>
+                                            {comment.text}
+                                        </li>
+
+                                    }
+                                    )
+                            } else {
+                                return " No comments"
+                            }
+                        }
+                        else {
+                            return null;
+                        }
+
                     })
+
                 }
             </ul>
         </div>

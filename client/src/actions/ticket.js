@@ -12,6 +12,11 @@ const ticketFetched = ticket => ({
   ticket
 })
 
+const ticketCreateSuccess = ticket => ({
+  type: TICKET_CREATE_SUCCESS,
+  ticket
+})
+
 
 export const loadTicket = (eventId, ticketId) => dispatch => {
   request
@@ -22,15 +27,15 @@ export const loadTicket = (eventId, ticketId) => dispatch => {
   .catch(console.error)
 }
 
-const ticketCreateSuccess = ticket => ({
-  type: TICKET_CREATE_SUCCESS,
-  ticket
-})
 
+export const createTicket = (data, eventId) => (dispatch, getState) => {
 
-export const createTicket = (data, eventId) => dispatch => {
+  const state = getState()
+  const jwt = state.currentUser.jwt
+  
   request
     .post(`${baseUrl}/events/${eventId}/tickets`)
+    .set('Authorization', `Bearer ${jwt}`)
     .send(data)
     .then(response => {
       dispatch(ticketCreateSuccess(response.body))

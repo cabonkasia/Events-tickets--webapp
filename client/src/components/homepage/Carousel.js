@@ -10,8 +10,8 @@ export default (props) => {
     <div className="carousel slide carousel-fade" data-ride="carousel" data-pause="false">
       <div className="carousel-inner">
 
-        {props.events.events.map(event => {
-          if(props.events.events.indexOf(event) === 0)
+        {props.events.map(event => {
+          if(props.events.indexOf(event) === 0)
 
             return (
               <div className="imgbox carousel-item active">
